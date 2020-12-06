@@ -4,6 +4,10 @@ SHELL:=/bin/bash
 example:
 	mkdir -p build && cd build && cmake .. && make -j $$(nproc)
 
+.PHONY: example
+debug:
+	mkdir -p build && cd build && cmake -DDEBUG=1 .. && make -j $$(nproc)
+
 .PHONY: libs
 libs:
 	apt-get install -y libbz2-dev liblzma-dev libz-dev

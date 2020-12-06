@@ -22,6 +22,7 @@ else()
 endif()
 
 include_directories(${PROJECT_SOURCE_DIR}/libs/framer/)
+include_directories(${PROJECT_SOURCE_DIR}/libs/fmt/include/)
 include_directories(/opt/cppse/build/ffmpeg/include/)
 
 add_definitions(${COMPILE_FLAGS})
@@ -36,13 +37,14 @@ target_link_libraries(example "/opt/cppse/build/ffmpeg/lib/libavformat.a")
 target_link_libraries(example "/opt/cppse/build/ffmpeg/lib/libavcodec.a")
 target_link_libraries(example "/opt/cppse/build/ffmpeg/lib/libavutil.a")
 target_link_libraries(example "/opt/cppse/build/ffmpeg/lib/libavfilter.a")
-#target_link_libraries(example "/opt/cppse/build/ffmpeg/lib/libswresample.a")
+
 target_link_libraries(example "/usr/lib/x86_64-linux-gnu/libz.a")
 target_link_libraries(example "/opt/cppse/build/x264/lib/libx264.a")
 target_link_libraries(example -ldl)
 target_link_libraries(example "/usr/lib/x86_64-linux-gnu/libdl.a")
 target_link_libraries(example "/usr/lib/x86_64-linux-gnu/liblzma.a")
 target_link_libraries(example "/usr/lib/x86_64-linux-gnu/libbz2.a")
+target_link_libraries(example "${PROJECT_SOURCE_DIR}/libs/fmt/libfmt.a")
 
 find_library(LIBZ NAMES libz.a PATHS /usr/lib /usr/local/lib /opt/local/lib /usr/lib/x86_64-linux-gnu)
 find_library(LIBDLSTATIC NAMES libdl.a PATHS /usr/lib /usr/local/lib /opt/local/lib /usr/lib/x86_64-linux-gnu)
@@ -58,5 +60,5 @@ target_link_libraries(example ${LIBX11})
 target_link_libraries(example ${LIBXCB})
 target_link_libraries(example ${CMAKE_THREAD_LIBS_INIT})
 
-clangformat_setup(${SOURCES})
+clangformat_setup(${SOURCES} "noise.hpp")
 

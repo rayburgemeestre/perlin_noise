@@ -137,7 +137,7 @@ public:
     double frequency = 0.25;
     double amplitude = 1;
     double offset = size;
-    double power = 1 / frequency;
+    // double power = 1 / frequency;
     // We have to keep track of the largest possible amplitude,
     // because each octave adds more, and we need a value in [-1, 1].
     double maxAmplitude = 0;
@@ -183,7 +183,6 @@ public:
   // dx, dy are noise scale in x and y axes.
   // xyOffset is noise offset (same offset will result in having the same noise).
   double seamlessNoise(double x, double y, double z, double dx, double dy, double xyoffset) {
-    static double global = 0;
     double s = x;
     double t = y;
     double u = z;
